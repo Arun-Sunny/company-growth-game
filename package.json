@@ -1,0 +1,22 @@
+{
+  "name": "company-growth-game",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Arun-Sunny/company-growth-game.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Arun-Sunny/company-growth-game/issues"
+  },
+  "homepage": "https://github.com/Arun-Sunny/company-growth-game#readme",
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.7.3"
+  }
+}
