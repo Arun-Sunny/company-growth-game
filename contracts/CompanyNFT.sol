@@ -14,7 +14,6 @@ contract CompanyNFT is ERC721, ERC721Enumerable, ERC721URIStorage {
 
     address public owner;
     address public healthOracle;
-    mapping(uint256 => int256) health;
     mapping(uint256 => uint8) team;
 
     constructor(address _healthOracle) ERC721("COMPANY-NFT TOKEN", "CPToken") {
@@ -36,13 +35,15 @@ contract CompanyNFT is ERC721, ERC721Enumerable, ERC721URIStorage {
         _idCounter.increment();
         _safeMint(_to, tokenId);
         _setTokenURI(tokenId, _uri);
-        health[tokenId] = 1; // assuming health starts at 1
         team[tokenId] = _team; //0 signifies team A, 1 signifies team B
     }
 
     function getHealth(uint256 _tokenId) external view returns (int256) {
-        int256 growth = IHealthOracle(healthOracle).getGrowth(_tokenId);
-        return ((health[_tokenId]) + (growth * health[_tokenId])) / 10000;
+        return IHealthOracle(healthOracle).getHealth(_tokenId);
+    }
+
+    function setHealthOracle(address _healthOracle) external onlyOwner {
+        healthOracle = _healthOracle;
     }
 
     function getTeam(uint256 _tokenId) external view returns (uint8) {
